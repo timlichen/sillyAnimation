@@ -1,6 +1,8 @@
 from django.shortcuts import render,redirect
 from django.db.models import Q
 from ..login_reg.models import User
+from ..dashboard.models import Event
+import datetime
 
 # Create your views here.
 def index(request):
@@ -26,7 +28,14 @@ def logout(request):
 	return redirect('/')
 
 def events(request):
-	return render(request, 'dashboard/events.html')
+	date = datetime.date.today()
+	
+	context = {
+		'currentMonth' : date.strftime("%B"),
+		'nextMonth' : (date + datetime.timedelta(1*365/12)).strftime("%B"),
+		'nextNextMonth' : (date + datetime.timedelta(2*365/12)).strftime("%B"),
+	}
+	return render(request, 'dashboard/events.html', context)
 
 def benefits(request):
 	return render(request, 'dashboard/benefits.html')
