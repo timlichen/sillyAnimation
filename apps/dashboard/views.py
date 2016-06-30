@@ -28,13 +28,6 @@ def logout(request):
 	return redirect('/')
 
 def events(request):
-	date = datetime.date.today()
-	
-	context = {
-		'currentMonth' : date.strftime("%B"),
-		'nextMonth' : (date + datetime.timedelta(1*365/12)).strftime("%B"),
-		'nextNextMonth' : (date + datetime.timedelta(2*365/12)).strftime("%B"),
-	}
 	return render(request, 'dashboard/events.html', context)
 
 def benefits(request):
