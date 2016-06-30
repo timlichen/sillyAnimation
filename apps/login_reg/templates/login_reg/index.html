@@ -1,0 +1,67 @@
+<html>
+<head>
+	<title>Login</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	{% load staticfiles %}
+	<link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon" />
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+
+</head>
+<body>
+	<!-- NAVBAR -->
+	<nav class="navbar navbar-default">
+	  <div class="container-fluid">
+	    <!-- Brand and toggle get grouped for better mobile display -->
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="#">User Dashboard</a>
+	    </div>
+
+	    <!-- Collect the nav links, forms, and other content for toggling -->
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      <ul class="nav navbar-nav">
+	        <li><a href="/">Home <span class="sr-only">(current)</span></a></li>
+	      </ul>
+	      <ul class="nav navbar-nav navbar-right">
+	        <li class="active"><a href="">Sign In</a></li>
+	       	<li><a href="/login/register">Register</a></li>
+
+	      </ul>
+	    </div><!-- /.navbar-collapse -->
+	  </div><!-- /.container-fluid -->
+	</nav>
+
+	<!-- SIGN IN -->
+	<div class="container">
+		{% for error in errors %}
+			<p class="bg-danger">{{error}}</p>
+		{% endfor %}
+	<form action="{% url 'events' %}" method="post"> {% csrf_token %}
+	  <div class="form-group">
+	    <label for="email">Email address</label>
+	    <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+	  </div>
+	  <div class="form-group">
+	    <label for="password">Password</label>
+	    <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+	  </div>
+	  <button type="submit" class="btn btn-default">Sign In</button>
+	</form>
+	</div>
+
+</body>
+</html>

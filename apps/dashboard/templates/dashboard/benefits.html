@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='UTF-8'/>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    {% load staticfiles %}
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon" />
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+        <script type="text/javascript">
+          $(document).ready(function(){
+              $( "input" ).click(function( event ) {
+                event.preventDefault();
+                $( "#form,#partners" ).hide("slow");
+                $( this ).hide();});
+          });
+        </script>
+    <meta charset="UTF-8">
+    <title>Xenonarc Benefits Page</title>
+  </head>
+  <body>
+    <div class="section1">
+      <div class="container">
+    <!-- Header Navigation -->
+      <div class="row">
+        <div class="col-xs-12 col-md-12">
+          <div class="navigation">
+        {% load staticfiles %}
+        <div id="logo"><a href="http://www.xenonarc.com/"><img src="{% static 'images/xenonarclogo.png' %}"</a></div>
+            <ul>
+              <li><a href="{% url "events" %}">Events</a></li>
+              <li><a href="{% url "benefits"%}">Benefits</li></a>
+              <li><a href="{% url "community"%}">Community</li></a>
+            </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+    <!-- Banner-->
+        <br>
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+          <!-- Indicators -->
+          <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+          </ol>
+          <!-- Wrapper for slides -->
+          <div class="carousel-inner" role="listbox">
+            <div class="item active">
+              {% load staticfiles %}
+              <img src="{% static 'images/banner.jpg' %}">
+            </div>
+          </div>
+          <!-- Left and right controls -->
+          <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+    <!--Guiding Principles-->
+      <div class="row">
+        <div class="col-xs-12">
+        <div id="guiding">
+          <h1><strong>Our Guiding Principles</strong></h1>
+          <p>Lorem Ipsum dolor sit amet, consecteturg elit. Nunc ac erat et ex veneanat ultricies. Nullam imperdim upsim dolor sit ameer.</p>
+        </div>
+      </div>
+    </div>
+    <div id="line"><hr></div>
+    <div class="section2">
+    <div class="container">
+    <!--Benefits-->
+      <div class="row">
+        <div id="mainheading"><h1><strong>Employee Benefits</strong></h1></div>
+        <div class="col-xs-12 white col-md-6">
+        <div id="ben1">
+          {% load staticfiles %}
+          <img src="{% static 'images/401kicon.png' %}">
+          <h3>401k Savings</h3>
+          <p>Lorem Ipsum dolor sit arnet, consectur consectetur adipiscing elit. Vivamus eu egestas massa. Pellentesque vestibulum ultricies massa  adispciing elecur tur adipsisdf eldxrir nisis tu.</p>
+          <ul>
+            <li><a href="#">Lorem Ipsum Dolo</a></li>
+            <li><a href="#">Lorem Ipsum Doris Niolo</a></li>
+            <li><a href="#">Loremo</a></li>
+          </ul>
+        </div>
+        </div>
+        <div class="col-xs-12 white col-md-6">
+        <div id="ben2">
+          {% load staticfiles %}
+          <img src="{% static 'images/cross.png' %}">
+          <h3>Medical</h3>
+          <p>Lorem Ipsum dolor sit arnet, consectur consectetur adipiscing elit. Vivamus eu egestas massa. Pellentesque vestibulum ultricies massa  adispciing elecur tur adipsisdf eldxrir nisis tu.</p>
+          <ul>
+            <li><a href="#">Lorem Ipsum Dolo</a></li>
+            <li><a href="#">Lorem Ipsum Doris Niolo</a></li>
+            <li><a href="#">Loremo</a></li>
+          </ul>
+        </div>
+        </div>
+        <div class="col-xs-12 white col-md-6">
+        <div id="ben3">
+          {% load staticfiles %}
+          <img src="{% static 'images/house.png' %}">
+          <h3>Flex Commute</h3>
+          <p>Lorem Ipsum dolor sit arnet, consectur consectetur adipiscing elit. Vivamus eu egestas massa. Pellentesque vestibulum ultricies massa  adispciing elecur tur adipsisdf eldxrir nisis tu.</p>
+          <ul>
+            <li><a href="#">Lorem Ipsum Dolo</a></li>
+            <li><a href="#">Lorem Ipsum Doris Niolo</a></li>
+            <li><a href="#">Loremo</a></li>
+          </ul>
+        </div>
+        </div>
+        <div class="col-xs-12 white col-md-6">
+        <div id="ben2">
+          {% load staticfiles %}
+          <img src="{% static 'images/tooth.png' %}">
+          <h3>Dental</h3>
+          <p>Lorem Ipsum dolor sit arnet, consectur consectetur adipiscing elit. Vivamus eu egestas massa. Pellentesque vestibulum ultricies massa  adispciing elecur tur adipsisdf eldxrir nisis tu.</p>
+          <ul>
+            <li><a href="#">Lorem Ipsum Dolo</a></li>
+            <li><a href="#">Lorem Ipsum Doris Niolo</a></li>
+            <li><a href="#">Loremo</a></li>
+          </ul>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+      <!--Snack Request -->
+      <div class="row">
+        <div class="col-xs-12 col-md-12">
+          <div id="form">
+              <form action="/snack_request/{{request.session.id}}" method="post">
+              {% csrf_token %}
+              <div class="col-xs-12 white col-md-12">
+              <div id="text">
+                <h1><strong>Snack Request</strong></h1>
+                <textarea placeholder="Craving a particular morsel? Feel free to request it here!" name="snack_request"></textarea>
+                <input type="submit" value="Submit">
+              </form>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+      <!-- Partners -->
+      <div class="row">
+        <div class="col-xs-12">
+        <div id="partners"></div>
+      </div>
+    </div>
+    <!-- Footer -->
+    <div class="row">
+      <div class="col-xs-12">
+      <div id="footer">
+        <p>© Xenonarc All Rights Reserved</p>
+        <p>Downtown Core Bellevue, WA 98104 WA, United States</p>
+      </div>
+    </div>
+    <!-- Container Ending -->
+    </div>
+  </div>
+  </body>
+</html>
