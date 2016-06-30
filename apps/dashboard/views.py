@@ -29,11 +29,29 @@ def logout(request):
 
 def events(request):
 	date = datetime.date.today()
+	currentEvents = []
+	nextEvents = []
+	nextNextEvents = []
+	allEvents = Event.objects.all()
+	for event in allEvents:
+		if (event.event_date.month == date.month):
+			currentEvents.append(event)
+		elif (event.event_date.month == (date + datetime.timedelta(1*365/12)).month):
+			nextEvents.append(event)
+		elif (event.event_date.month == (date + datetime.timedelta(2*365/12)).month):
+			nextNextEvents.append(event)
+
+	print currentEvents
+	print nextEvents
+	print nextNextEvents
 
 	context = {
 		'currentMonth' : date.strftime("%B"),
 		'nextMonth' : (date + datetime.timedelta(1*365/12)).strftime("%B"),
 		'nextNextMonth' : (date + datetime.timedelta(2*365/12)).strftime("%B"),
+		'currentEvents' : currentEvents,
+		'nextEvents' : nextEvents,
+		'nextNextEvents' : nextNextEvents
 	}
 	return render(request, 'dashboard/events.html', context)
 

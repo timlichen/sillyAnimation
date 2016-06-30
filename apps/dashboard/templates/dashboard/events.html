@@ -78,25 +78,13 @@
                     <th colspan="13">Details</th>
                     <th colspan="1">Files&nbsp;&nbsp;</th>
                   </tr>
-                  <tr>
-                    <td colspan="1">&nbsp;&nbsp;08.15.1994</td>
-                    <td colspan="13">This week at Xenonarc we will be conducting peer reviews.</td>
-                    <td colspan="1"><a href="google.com">&nbsp;Download&nbsp;</a></td>
-                  </tr>
-                  <tr>
-                    <td colspan="1">&nbsp;&nbsp;08.15.1994</td>
-                    <td colspan="13">This week at Xenonarc we will be conducting peer reviews.</td>
-                    <td colspan="1"><a href="google.com">&nbsp;Download&nbsp;</a></td>
-                  </tr>
-                    <td colspan="1">&nbsp;&nbsp;08.15.1994</td>
-                    <td colspan="13">This week at Xenonarc we will be conducting peer reviews.</td>
-                    <td colspan="1"><a href="google.com">&nbsp;Download&nbsp;</a></td>
-                </tr>
-                <tr>
-                    <td colspan="1">&nbsp;&nbsp;08.15.1994</td>
-                    <td colspan="13">This week at Xenonarc we will be conducting peer reviews.</td>
-                    <td colspan="1"><a href="google.com">&nbsp;Download&nbsp;</a></td>
-                </tr>
+                  {% for event in nextNextEvents %}
+                      <tr>
+                          <td colspan="1">&nbsp;&nbsp;{{event.event_date}}</td>
+                          <td colspan="13">{{event.details}}</td>
+                          <td colspan="1"><a href="google.com">&nbsp;Download</a></td>
+                      </tr>
+                  {% endfor %}
                 </table>
               </div>
             </div>
@@ -115,15 +103,13 @@
                        <th colspan="13">Details</th>
                        <th colspan="1">Files&nbsp;&nbsp;</th>
                    </tr>
-                   <tr>
-                       <td colspan="1">&nbsp;&nbsp;08.15.1994</td>
-                       <td colspan="13">This week at Xenonarc we will be conducting peer reviews.</td>
-                       <td colspan="1"><a href="google.com">&nbsp;Download</a></td>
-                   </tr>
-                   <tr>
-                       <td colspan="1">&nbsp;&nbsp;08.15.1994</td>
-                       <td colspan="13">This week at Xenonarc we will be conducting peer reviews.</td>
-                       <td colspan="1"><a href="google.com">&nbsp;Download&nbsp;</a></td>
+                   {% for event in nextEvents %}
+                       <tr>
+                           <td colspan="1">&nbsp;&nbsp;{{event.event_date}}</td>
+                           <td colspan="13">{{event.details}}</td>
+                           <td colspan="1"><a href="google.com">&nbsp;Download</a></td>
+                       </tr>
+                   {% endfor %}
                  </table>
                </div>
              </div>
@@ -143,21 +129,13 @@
                        <th colspan="13">Details</th>
                        <th colspan="1">Files&nbsp;&nbsp;</th>
                    </tr>
-                   <tr>
-                       <td colspan="1">&nbsp;&nbsp;08.15.1994</td>
-                       <td colspan="13">This week at Xenonarc we will be conducting peer reviews.</td>
-                       <td colspan="1"><a href="google.com">&nbsp;Download</a></td>
-                   </tr>
-                   <tr>
-                       <td colspan="1">&nbsp;&nbsp;08.15.1994</td>
-                       <td colspan="13">This week at Xenonarc we will be conducting peer reviews.</td>
-                       <td colspan="1"><a href="google.com">&nbsp;Download&nbsp;</a></td>
-                  </tr>
-                  <tr>
-                      <td colspan="1">&nbsp;&nbsp;08.15.1994</td>
-                      <td colspan="13">This week at Xenonarc we will be conducting peer reviews.</td>
-                      <td colspan="1"><a href="google.com">&nbsp;Download&nbsp;</a></td>
-                 </tr>
+                   {% for event in currentEvents %}
+                       <tr>
+                           <td colspan="1">&nbsp;&nbsp;{{event.event_date}}</td>
+                           <td colspan="13">{{event.details}}</td>
+                           <td colspan="1"><a href="google.com">&nbsp;Download</a></td>
+                       </tr>
+                   {% endfor %}
                  </table>
                </div>
              </div>
