@@ -2,14 +2,21 @@
 <head>
 	<title>User Profile</title>
 
+	<style type="text/css">
+		label.input {
+			display: block;
+		}
+		label.input input[type=file] {
+			display: inline-block;
+		}
+	</style>
+
 	{% load staticfiles %}
 	<link rel="stylesheet/less" type="text/css" href="{% static 'wall/style.less' %}">
 	<!-- LESS -->
 	<script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.5.1/less.min.js"></script>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-
-
 
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -41,69 +48,34 @@
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav">
 	        <li><a href="/../../dashboard">Dashboard <span class="sr-only">(current)</span></a></li>
-	         <li><a href="{% url 'my_profile' user_id=request.session.id %}">Profile</a></li>
 	      </ul>
 	      <ul class="nav navbar-nav navbar-right">
-	       	<li><a href="{% url 'logout' %}">Log Off - {{request.session.name}}</a></li>
-
+	       	<li><a href="{% url 'logout' %}">Log Off</a></li>
 	      </ul>
 	    </div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
 	</nav>
 
 	<div class="container">
-		<h1  class="col-md-12 col-lg-12">{{user.first_name}} {{user.last_name}}<a href="/../../dashboard" class="btn btn-default pull-right">Return to Dashboard</a></h1>
-		<h4 class="col-md-12 col-lg-12"><p>Registered At:</p> <span>{{user.created_at}}</span></h4>
-		<h4 class="col-md-12 col-lg-12"><p>User ID:</p> <span>{{user.id}}</span></h4>
-		<h4 class="col-md-12 col-lg-12"><p>Email Address:</p> <span>{{user.email}}</span></h4>
-		<h4 class="col-md-12 col-lg-12"><p>Description:</p> <span>{{user.description}}</span></h4>
-
-		<form action="{% url 'add_msg' wall_id=user.id %}" method="post">{% csrf_token %}
-			  <div class="form-group">
-			    <label for="message">Leave a Message for {{user.first_name}}</label>
-			    <textarea class="form-control" id="message" name="message"></textarea>
-			  </div>
-
-			  <button type="submit" class="btn btn-default ">Post Message</button>
-		</form>
-
-		<hr>
-
-		<!-- DISPLAY ALL MESSAGES PERTAINING TO THE USER -->
-		{% if messages %}
-			{% for message in messages %}
-			<div>
-				<h3>{{message.user.first_name}} {{message.user.last_name}} wrote: 
-					<span class="pull-right">
-					{% load humanize %}
-					{{message.created_at|naturaltime}} 
-					<!-- naturaltime will add the "ago", but timesince will only show time -->
-					</span>
-				</h3>
-				<p  style="border: 2px solid black; border-radius: 50px; padding: 10px" >{{message.message}}</p>
-
-				{% for comment in comments %}
-					{% if comment.message == message %}
-					<div style="margin-left: 50px">
-						<h5> {{comment.user}} wrote: <span class="pull-right">{{comment.created_at|naturaltime}}</span>
-						</h5>
-						<p style="border: 2px solid gray; border-radius: 50px; padding: 10px">{{comment.comment}}</p>
-					</div>
-					{% endif %}
-				{% endfor %}
-
-				<!-- ADD COMMENT -->
-				<form action="{% url 'add_comment' msg_id=message.id %}" method="post" style="padding-left: 50px"> {% csrf_token %}
-					<div class="form-group">
-				    	<label for="comment"></label>
-				    	<textarea class="form-control" id="comment" name="comment" placeholder="Add Comment"></textarea>
-				  	</div>
-				  	<button type="submit" class="btn btn-default">Add Comment</button>
-				</form>
-
-			</div>
-			{% endfor %}
-		{% endif %}
+		<div class="post_event">
+			<h3>Post Event to Events Page</h3>
+			<form action="{%url 'post_event'%}" method="post">
+				{% csrf_token %}
+				<label>Details: <textarea rows="4" cols="30" name="detail"></textarea></label>
+				<label>Date of Event: <input name="event_dates" type="date"></label>
+				<input type="submit" name="submit" value="Post">
+			</form>
+		</div>
+		<div class="post_message">
+			<h3>Post message to Community Page</h3>
+			<form action="{%url 'post_message'%}" method="post">
+				{% csrf_token %}
+				<label class="input">Title: <input type="text" name="title"></label>
+				<label class="input">Message: <textarea crows="4" cols="60" name="message"></textarea></label>
+				<label class="input">Image: <input type="file" name="image" size="40" accept="image/jpeg"></label>
+				<input type="submit" name="submit" value="Post">
+			</form>
+		</div>
 	</div>
 </body>
 </html>

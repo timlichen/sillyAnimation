@@ -1,8 +1,11 @@
 from django.shortcuts import render,redirect
+from django.core.urlresolvers import reverse
 from django.db.models import Q
 from ..login_reg.models import User
-from ..dashboard.models import Event
+from .models import Event
+from ..wall.models import Message
 import datetime
+
 
 # Create your views here.
 def index(request):
@@ -41,10 +44,6 @@ def events(request):
 		elif (event.event_date.month == (date + datetime.timedelta(2*365/12)).month):
 			nextNextEvents.append(event)
 
-	print currentEvents
-	print nextEvents
-	print nextNextEvents
-
 	context = {
 		'currentMonth' : date.strftime("%B"),
 		'nextMonth' : (date + datetime.timedelta(1*365/12)).strftime("%B"),
@@ -59,7 +58,8 @@ def benefits(request):
 	return render(request, 'dashboard/benefits.html')
 
 def community(request):
-	return render(request, 'dashboard/community.html')
+	context={'messages': Message.messageManager.all()}
+	return render(request, 'dashboard/community.html', context)
 
 #render add new user (ADMIN)
 def new(request):

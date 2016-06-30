@@ -17,11 +17,13 @@ from django.conf.urls import url, patterns, include
 from django.contrib import admin
 from apps.login_reg.models import User
 from apps.dashboard.models import Event
+from apps.wall.models import Message
 
 class UserAdmin(admin.ModelAdmin):
 	pass
 admin.site.register(User, UserAdmin)
 admin.site.register(Event, UserAdmin)
+admin.site.register(Message, UserAdmin)
 
 urlpatterns = [
 	url(r'^', include('apps.landing.urls')),

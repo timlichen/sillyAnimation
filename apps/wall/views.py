@@ -1,33 +1,17 @@
 from django.shortcuts import render,redirect
+from django.core.urlresolvers import reverse
 from ..login_reg.models import User
-from models import Message, Comment
+from ..dashboard.models import Event
+from models import Message
 # Create your views here.
-def index(request, user_id):
-	request.session['wall'] = user_id
-	context = {
-		'user' : User.userManager.getOne(user_id),
-		'messages' : Message.messageManager.getAll(user_id),
-		'comments' : Comment.commentManager.getAll(),
-	}
+def index(request):
+	context={'messages': Message.messageManager.all()}
 	return render(request, 'wall/index.html', context)
 
-def add_msg(request, wall_id):
-	user = User.userManager.getOne(request.session['id'])
-	if request.method == "POST":
-		user_tuple = Message.messageManager.addMessage(wall_id, request.POST['message'], request.session['id'])
-		if user_tuple[0] == False:
-			print user_tuple[1].values()
-			return redirect('/../../user/'+wall_id)
-		else:
-			return redirect('/../../user/'+wall_id)
- 
+def post_message(request):
+	Message.messageManager.create(message=request.POST['message'], title=request.POST['title'], image=request.POST['image'])
+	return redirect(reverse('index'))
 
-def add_comment(request, msg_id):
-	print "Message ID " + msg_id
-	if request.method == "POST":
-		user_tuple = Comment.commentManager.addComment(msg_id, request.POST['comment'], request.session['id'])
-		if user_tuple[0] == False:
-			print user_tuple[1].values()
-			return redirect('/../../user/'+request.session['wall'])
-		else:
-			return redirect('/../../user/'+request.session['wall'])
+def events(request):
+	Event.objects.create(details=request.POST['detail'], event_date=request.POST['event_dates'])
+	return redirect(reverse('index'))
