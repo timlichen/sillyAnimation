@@ -42,8 +42,6 @@
 	        <span class="icon-bar"></span>
 	      </button>
 	      <a class="navbar-brand" href="#">User Dashboard</a>
-	      <a class="navbar-brand" href="{%url 'events'%}">Events</a>
-	      <a class="navbar-brand" href="{%url 'index'%}">Community</a>
 	    </div>
 
 	    <!-- Collect the nav links, forms, and other content for toggling -->
@@ -59,6 +57,15 @@
 	</nav>
 
 	<div class="container">
+		<div class="post_event">
+			<h3>Post Event to Events Page</h3>
+			<form action="{%url 'post_event'%}" method="post">
+				{% csrf_token %}
+				<label>Details: <textarea rows="4" cols="30" name="detail"></textarea></label>
+				<label>Date of Event: <input name="event_dates" type="date"></label>
+				<input type="submit" name="submit" value="Post">
+			</form>
+		</div>
 		<div class="post_message">
 			<h3>Post message to Community Page</h3>
 			<form action="{%url 'post_message'%}" method="post">
@@ -69,14 +76,6 @@
 				<input type="submit" name="submit" value="Post">
 			</form>
 		</div>
-		<hr>
-		{%for message in messages%}
-		<div class="messages">
-			<h2>Title: {{message.title}}</h2>
-			<h4>Message: {{message.message}}</h4>
-			<img src="{{message.image}}">
-		</div>
-		{%endfor%}
 	</div>
 </body>
 </html>

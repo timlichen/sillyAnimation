@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from django.core.urlresolvers import reverse
 from ..login_reg.models import User
+from ..dashboard.models import Event
 from models import Message
 # Create your views here.
 def index(request):
@@ -12,4 +13,5 @@ def post_message(request):
 	return redirect(reverse('index'))
 
 def events(request):
-	return render(request,'wall/events.html')
+	Event.objects.create(details=request.POST['detail'], event_date=request.POST['event_dates'])
+	return redirect(reverse('index'))
