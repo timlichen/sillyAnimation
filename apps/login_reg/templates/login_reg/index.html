@@ -3,109 +3,151 @@
 	<title>Login</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 	{% load staticfiles %}
+
 	<link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon" />
 
 	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"> -->
 
 	<!-- Optional theme -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous"> -->
 
 	<!-- Latest compiled and minified JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script> -->
 
-	{% load staticfiles %}
-	<link rel="stylesheet" href="{% static 'css/main.css' %}">
-	{% load staticfiles %}
+	<link rel="stylesheet" href="{% static 'css/animation.css' %}">
+
 	<link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon" />
-	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-			<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
-			<script type="text/javascript">
 
-			</script>
+	{% load staticfiles %}
+
+	<!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> -->
+	<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'>
+	</script>
+	<script type="text/javascript">
+	// imitation of new page loading
+		window.onload = function() {
+		  $body = $('body'),
+		  $btn  = $('.btn');
+
+		  loader(10);
+
+		  $btn.on('click', function(){
+
+				console.log("lol k")
+				console.log("lol read the man lol")
+				console.log("http://compass-style.org/blog/2011/05/09/compass-django/")
+
+		    $body.removeClass().addClass('restart');
+		    loader( getRandomNumber(300, 3000) );
+		  });
+
+		  function loader(delay) {
+		    setTimeout(function(){
+		      $body.addClass('loading');
+		    }, delay);
+
+		    setTimeout(function(){
+		      $body.addClass('loaded');
+		    }, delay + 1700);
+
+		    setTimeout(function(){
+		      $body.removeClass('restart').addClass('new-page');
+		    }, delay + 1950);
+		  }
+
+		  function getRandomNumber(min, max) {
+		    return Math.floor(Math.random() * (max - min + 1)) + min;
+		  }
+		}
+	</script>
 
 </head>
 <body>
-	<!-- NAVBAR -->
-	<nav class="navbar navbar-default">
-	  <div class="container-fluid">
-	    <!-- Brand and toggle get grouped for better mobile display -->
-	    <div class="navbar-header">
-	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-	        <span class="sr-only">Toggle navigation</span>
-	        <span class="icon-bar"></span>
-	        <span class="icon-bar"></span>
-	        <span class="icon-bar"></span>
-	      </button>
-	    </div>
 
-	    <!-- Collect the nav links, forms, and other content for toggling -->
-	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-	      <ul class="nav navbar-nav">
-	        <li><a href="/">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Home <span class="sr-only">(current)</span></a></li>
-	      </ul>
-	      <ul class="nav navbar-nav navbar-right">
-	        <li class="active"><a href="">Sign In</a></li>
-	       	<li><a href="/login/register">Register</a></li>
-
-	      </ul>
-	    </div><!-- /.navbar-collapse -->
-	  </div><!-- /.container-fluid -->
-	</nav>
-
-	<!-- SIGN IN -->
-	<div class="container">
-		{% for error in errors %}
-			<p class="bg-danger">{{error}}</p>
-		{% endfor %}
-	<form action="{% url 'login' %}" method="post"> {% csrf_token %}
-	  <div class="form-group">
-	    <label for="email">Email address</label>
-	    <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+	<div class="page">
+	  <div class="wrap">
+	    <b class="box fw mb2">
+	      <i class="img h10 dl1"></i>
+	    </b>
+	    <b class="box hw mb2">
+	      <i class="img dl2"></i>
+	      <i class="txt w100 dl5"></i>
+	      <i class="txt w70 dl6"></i>
+	    </b>
+	    <b class="box hw mb2">
+	      <i class="img dl4"></i>
+	      <i class="txt w100 dl7"></i>
+	      <i class="txt w70 dl8"></i>
+	    </b>
+	    <b class="box hw mb2">
+	      <i class="img dl6"></i>
+	      <i class="txt w100 dl9"></i>
+	      <i class="txt w70 dl10"></i>
+	    </b>
+	    <b class="box hw mb2">
+	      <i class="img dl8"></i>
+	      <i class="txt w100 dl11"></i>
+	      <i class="txt w70 dl12"></i>
+	    </b>
+	    <b class="box hw mb2">
+	      <i class="img dl10"></i>
+	      <i class="txt w100 dl13"></i>
+	      <i class="txt w70 dl14"></i>
+	    </b>
+	    <b class="box hw mb2">
+	      <i class="img dl12"></i>
+	      <i class="txt w100 dl15"></i>
+	      <i class="txt w70 dl16"></i>
+	    </b>
+	    <b class="box fw mb2 f0 w100">
+	      <i class="txt ib mt0 w40 dl13"></i><i class="txt ib mt0 w20 dl14"></i><i class="txt ib mt0 w15 dl15"></i>
+	      <i class="txt ib mt0 w70 dl14"></i><i class="txt ib mt0 w20 dl15"></i>
+	      <i class="txt ib mt0 w30 dl15"></i><i class="txt ib mt0 w40 dl16"></i><i class="txt ib mt0 w10 dl17"></i>
+	      <i class="txt ib mt0 w40 dl16"></i><i class="txt ib mt0 w15 dl17"></i>
+	    </b>
+	    <b class="box fw w100">
+	      <i class="btn w15 dl16"></i>
+	    </b>
 	  </div>
-	  <div class="form-group">
-	    <label for="password">Password</label>
-	    <input type="password" class="form-control" id="password" name="password" placeholder="Password">
-	  </div>
-	  <button type="submit" class="btn w15 dl16">Sign In</button>
-<div class="container">
- <svg class="loader" viewBox="0 0 100 100" overflow="visible">
-	 <g class="core">
-		 <circle class="path" cx="50" cy="50" r="1" fill="none" />
-	 </g>
-	 <g class="spinner">
-		 <circle class="path" cx="50" cy="50" r="20" fill="none" />
-	 </g>
-	 <g class="layer-1">
-		 <circle class="path" cx="50" cy="50" r="70" fill="none" />
-	 </g>
-	 <g class="layer-2">
-		 <circle class="path" cx="50" cy="50" r="120" fill="none" />
-	 </g>
-	 <g class="layer-3">
-		 <circle class="path" cx="50" cy="50" r="180" fill="none" />
-	 </g>
-	 <g class="layer-4">
-		 <circle class="path" cx="50" cy="50" r="240" fill="none" />
-	 </g>
-	 <g class="layer-5">
-		 <circle class="path" cx="50" cy="50" r="300" fill="none" />
-	 </g>
-	 <g class="layer-6">
-		 <circle class="path" cx="50" cy="50" r="380" fill="none" />
-	 </g>
-	 <g class="layer-7">
-		 <circle class="path" cx="50" cy="50" r="450" fill="none" />
-	 </g>
-	 <g class="layer-8">
-		 <circle class="path" cx="50" cy="50" r="540" fill="none" />
-	 </g>
- </svg>
-</div>
-
-
-	</form>
 	</div>
+
+	<div class="container">
+	  <svg class="loader" viewBox="0 0 100 100" overflow="visible">
+	    <g class="core">
+	      <circle class="path" cx="50" cy="50" r="1" fill="none" />
+	    </g>
+	    <g class="spinner">
+	      <circle class="path" cx="50" cy="50" r="20" fill="none" />
+	    </g>
+	    <g class="layer-1">
+	      <circle class="path" cx="50" cy="50" r="70" fill="none" />
+	    </g>
+	    <g class="layer-2">
+	      <circle class="path" cx="50" cy="50" r="120" fill="none" />
+	    </g>
+	    <g class="layer-3">
+	      <circle class="path" cx="50" cy="50" r="180" fill="none" />
+	    </g>
+	    <g class="layer-4">
+	      <circle class="path" cx="50" cy="50" r="240" fill="none" />
+	    </g>
+	    <g class="layer-5">
+	      <circle class="path" cx="50" cy="50" r="300" fill="none" />
+	    </g>
+	    <g class="layer-6">
+	      <circle class="path" cx="50" cy="50" r="380" fill="none" />
+	    </g>
+	    <g class="layer-7">
+	      <circle class="path" cx="50" cy="50" r="450" fill="none" />
+	    </g>
+	    <g class="layer-8">
+	      <circle class="path" cx="50" cy="50" r="540" fill="none" />
+	    </g>
+	  </svg>
+	</div>
+
+	<a href="http://codepen.io/ARS" target="_blank" class="ARS">codepen.io/ARS</a>
 
 </body>
 </html>
