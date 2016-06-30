@@ -14,7 +14,7 @@ def login(request):
 			request.session['name'] = user_tuple[1].first_name + " " + user_tuple[1].last_name
 			request.session['role'] = user_tuple[1].role
 			print request.session['name']
-			return redirect('../../dashboard')
+			return redirect('../../dashboard/events')
 		else:
 			context = {
 				'errors': user_tuple[1].values()
