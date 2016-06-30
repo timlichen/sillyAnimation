@@ -44,10 +44,6 @@ def events(request):
 		elif (event.event_date.month == (date + datetime.timedelta(2*365/12)).month):
 			nextNextEvents.append(event)
 
-	print currentEvents
-	print nextEvents
-	print nextNextEvents
-
 	context = {
 		'currentMonth' : date.strftime("%B"),
 		'nextMonth' : (date + datetime.timedelta(1*365/12)).strftime("%B"),
