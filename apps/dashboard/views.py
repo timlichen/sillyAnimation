@@ -1,6 +1,9 @@
 from django.shortcuts import render,redirect
+from django.core.urlresolvers import reverse
 from django.db.models import Q
 from ..login_reg.models import User
+from .models import Event
+from ..wall.models import Message
 
 # Create your views here.
 def index(request):
@@ -32,7 +35,8 @@ def benefits(request):
 	return render(request, 'dashboard/benefits.html')
 
 def community(request):
-	return render(request, 'dashboard/community.html')
+	context={'messages': Message.messageManager.all()}
+	return render(request, 'dashboard/community.html', context)
 
 #render add new user (ADMIN)
 def new(request):

@@ -68,6 +68,7 @@
 
       <!--Main Content-->
       <div class="section2">
+        {%for message in messages%}
         <div class="container">
          <div class="row">
            <div class=" col-xs-4 col-md-3">
@@ -80,14 +81,15 @@
              </div>
              <div class="col-xs-8 col-md-9">
                <div id="mid">
-                 <h3>Duis dapibus aliquam mi, eget euismod sem sclerisque ut</h3>
-                 <h5>Posted by Admin</h5>
-                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum at fermentum turpis. Cras in augue egestas lobortis dolor et finibus ligula. Mauris iaculis enim eu justo auctor hendrerit. Proin pulvinar tempor lorem. Cras lectus orci, ultrices quis libero ut scelerisque lobortis turpis. Donec pharetra egestas efficitur. Ut lectus metus pretium vel felis vitae.</p>
+                 <h3>{{message.title}}</h3>
+                 <h5>Posted by Admin {{message.created_at}}</h5>
+                 <p>{{message.message}}</p>
                </div>
              </div>
             </div>
             <div id="line"><hr></div>
           </div>
+          {%endfor%}
           <div class="container">
            <div class="row">
              <div class=" col-xs-4 col-md-3">
