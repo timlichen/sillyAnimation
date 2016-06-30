@@ -2,14 +2,21 @@
 <head>
 	<title>User Profile</title>
 
+	<style type="text/css">
+		label.input {
+			display: block;
+		}
+		label.input input[type=file] {
+			display: inline-block;
+		}
+	</style>
+
 	{% load staticfiles %}
 	<link rel="stylesheet/less" type="text/css" href="{% static 'wall/style.less' %}">
 	<!-- LESS -->
 	<script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.5.1/less.min.js"></script>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-
-
 
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
@@ -56,9 +63,9 @@
 			<h3>Post message to Community Page</h3>
 			<form action="{%url 'post_message'%}" method="post">
 				{% csrf_token %}
-				<label>Title: <input type="text" name="title"></label>
-				<label>Message: <textarea rows="4" cols="30" name="message"></textarea></label>
-				<label>Image: <input type="file" name="image" size="40" accept="image/jpeg"></label>
+				<label class="input">Title: <input type="text" name="title"></label>
+				<label class="input">Message: <textarea crows="4" cols="60" name="message"></textarea></label>
+				<label class="input">Image: <input type="file" name="image" size="40" accept="image/jpeg"></label>
 				<input type="submit" name="submit" value="Post">
 			</form>
 		</div>
