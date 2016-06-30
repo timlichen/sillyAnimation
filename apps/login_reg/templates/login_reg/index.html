@@ -50,7 +50,7 @@
 		{% for error in errors %}
 			<p class="bg-danger">{{error}}</p>
 		{% endfor %}
-	<form action="{% url 'events' %}" method="post"> {% csrf_token %}
+	<form action="{% url 'login' %}" method="post"> {% csrf_token %}
 	  <div class="form-group">
 	    <label for="email">Email address</label>
 	    <input type="email" class="form-control" id="email" name="email" placeholder="Email">
