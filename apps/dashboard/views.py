@@ -4,6 +4,8 @@ from django.db.models import Q
 from ..login_reg.models import User
 from .models import Event
 from ..wall.models import Message
+import datetime
+
 
 # Create your views here.
 def index(request):
@@ -29,7 +31,32 @@ def logout(request):
 	return redirect('/')
 
 def events(request):
-	return render(request, 'dashboard/events.html')
+	date = datetime.date.today()
+	currentEvents = []
+	nextEvents = []
+	nextNextEvents = []
+	allEvents = Event.objects.all()
+	for event in allEvents:
+		if (event.event_date.month == date.month):
+			currentEvents.append(event)
+		elif (event.event_date.month == (date + datetime.timedelta(1*365/12)).month):
+			nextEvents.append(event)
+		elif (event.event_date.month == (date + datetime.timedelta(2*365/12)).month):
+			nextNextEvents.append(event)
+
+	print currentEvents
+	print nextEvents
+	print nextNextEvents
+
+	context = {
+		'currentMonth' : date.strftime("%B"),
+		'nextMonth' : (date + datetime.timedelta(1*365/12)).strftime("%B"),
+		'nextNextMonth' : (date + datetime.timedelta(2*365/12)).strftime("%B"),
+		'currentEvents' : currentEvents,
+		'nextEvents' : nextEvents,
+		'nextNextEvents' : nextNextEvents
+	}
+	return render(request, 'dashboard/events.html', context)
 
 def benefits(request):
 	return render(request, 'dashboard/benefits.html')
